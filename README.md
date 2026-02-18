@@ -4,31 +4,31 @@ A Django-based web application to manage organ donors and recipients and facilit
 
 Features
 
-Add and view donors
+* Add and view donors
 
-Add and view recipients
+* Add and view recipients
 
-Match organs between donors and recipients
+* Match organs between donors and recipients
 
 Technologies
 
-Python
+* Python
 
-Django
+* Django
 
-HTML/CSS
+* HTML/CSS
 
-SQLite
+* SQLite
 
 Project Structure
 
-config/ – Django project configuration
+* config/ – Django project configuration
 
-core/ – Main app containing models and views
+* core/ – Main app containing models and views
 
-manage.py – Django management script
+* manage.py – Django management script
 
-requirements.txt – Python dependencies
+* requirements.txt – Python dependencies
 
 Author
 
