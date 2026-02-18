@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- <h2 class="mb-4 text-center">Hospitals</h2> -->
+ <h2 class="mb-4 page-title">Hospitals</h2>
+
+<!-- <a href="{% url 'hospital_create' %}" class="btn btn-primary mb-3">
+    Add Hospital
+</a> -->
+
+<div class="row">
+    {% for hospital in hospitals %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm p-3">
+                <h5>{{ hospital.name }}</h5>
+                <p><strong>Location:</strong> {{ hospital.location }}</p>
+                <p><strong>Email:</strong> {{ hospital.contact_email }}</p>
+
+                <!-- <div class="d-flex justify-content-between">
+                    <a href="{% url 'hospital_update' hospital.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'hospital_delete' hospital.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </div> -->
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-center">No hospitals added yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

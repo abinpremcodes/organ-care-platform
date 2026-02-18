@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- <h2 class="mb-4 text-center page-title">Registered Donors</h2> -->
+ <h2 class="mb-4 page-title">Registered Donors</h2>
+
+
+<!-- ✅ Add Donor Button -->
+<div class="text-center mb-4">
+    <a href="{% url 'donor_create' %}" class="btn btn-primary">
+        ➕ Add Donor
+    </a>
+</div>
+
+<div class="row">
+    {% for donor in donors %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm p-4 bg-white">
+
+                <h5 class="fw-bold text-danger">{{ donor.name }}</h5>
+
+                <p><strong>Organ:</strong> {{ donor.organ_type }}</p>
+                <p><strong>Blood Group:</strong> {{ donor.blood_group }}</p>
+                <p><strong>Location:</strong> {{ donor.location }}</p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {% if donor.availability %}
+                        <span class="badge bg-success">Available</span>
+                    {% else %}
+                        <span class="badge bg-secondary">Unavailable</span>
+                    {% endif %}
+                </p>
+
+                <!-- <div class="d-flex justify-content-between">
+                    <a href="{% url 'donor_update' donor.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'donor_delete' donor.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </div> -->
+
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-center">No donors registered yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

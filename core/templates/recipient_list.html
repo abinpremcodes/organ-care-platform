@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- <h2 class="mb-4 text-center">Recipient Requests</h2> -->
+ <h2 class="mb-4 page-title">Recipient Requests</h2>
+
+<a href="{% url 'recipient_create' %}" class="btn btn-primary mb-3">
+    Add Recipient Request
+</a>
+
+<div class="row">
+    {% for recipient in recipients %}
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow-sm p-4 bg-white">
+                <h5 class="fw-bold text-primary">{{ recipient.name }}</h5>
+
+                <p class="mb-1"><strong>Organ:</strong> {{ recipient.required_organ }}</p>
+                <p class="mb-1"><strong>Blood Group:</strong> {{ recipient.blood_group }}</p>
+                <p class="mb-1"><strong>Urgency:</strong> 
+                    <span class="badge bg-danger">{{ recipient.urgency_level }}</span>
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {% if recipient.status == "Matched" %}
+                        <span class="badge bg-success">Matched</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ recipient.status }}</span>
+                    {% endif %}
+                </p>
+
+                <a href="{% url 'find_matches' recipient.pk %}" 
+                   class="btn btn-success btn-sm mb-2 w-100">
+                   🔍 Find Matches
+                </a>
+
+                <!-- <div class="d-flex justify-content-between">
+                    <a href="{% url 'recipient_update' recipient.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'recipient_delete' recipient.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </div> -->
+            </div>
+
+        </div>
+    {% empty %}
+        <p class="text-center">No requests submitted yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

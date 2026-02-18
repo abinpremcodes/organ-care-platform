@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Heading -->
+    <h2 class="text-center mb-5 fw-bold text-white outline-text">
+        🔍 Matching Donors
+    </h2>
+
+    <!-- Donor Cards -->
+    <div class="row">
+        {% for donor in matches %}
+
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card shadow-lg border-0 h-100">
+                    <div class="card-body">
+
+                        <h5 class="fw-bold text-primary mb-3">
+                            {{ donor.name }}
+                        </h5>
+
+                        <p class="mb-2">
+                            <strong>Organ:</strong> {{ donor.organ_type }}
+                        </p>
+
+                        <p class="mb-2">
+                            <strong>Blood Group:</strong> {{ donor.blood_group }}
+                        </p>
+
+                        <p class="mb-3">
+                            <strong>Location:</strong> {{ donor.location }}
+                        </p>
+
+                        {% if donor.availability %}
+                            <span class="badge bg-success px-3 py-2">
+                                ✅ Available
+                            </span>
+                        {% else %}
+                            <span class="badge bg-secondary px-3 py-2">
+                                Not Available
+                            </span>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+        {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-danger shadow-sm">
+                    ❌ No matching donors available.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="{% url 'recipient_list' %}" class="btn btn-outline-light px-4">
+            ⬅ Back to Recipients
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
