@@ -24,6 +24,8 @@ class Donor(models.Model):
         ('Blood', 'Blood'),
     ]
 
+    SUCCESS_RATE_CHOICES = [(f'{i}%', f'{i}%') for i in range(10, 110, 10)]
+
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     blood_group = models.CharField(max_length=5, choices=BLOOD_GROUP_CHOICES)
@@ -31,6 +33,7 @@ class Donor(models.Model):
     location = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     medical_history = models.FileField(upload_to='medical_records/', blank=True, null=True)
+    success_rate=models.CharField(max_length=5,choices=SUCCESS_RATE_CHOICES,default='50%')
 
     def __str__(self):
         return f"{self.name} - {self.organ_type}"
